@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import { supabase } from "../api/supabaseClient";
 
 export default function CreateEvent() {
@@ -7,6 +8,7 @@ export default function CreateEvent() {
   const [startDate, setStartDate] = useState("");
   const [endDate, setEndDate] = useState("");
   const [link, setLink] = useState("");
+  const [eventId, setEventId] = useState(null);
 
   const handleCreate = async () => {
     const { data, error } = await supabase
@@ -23,6 +25,7 @@ export default function CreateEvent() {
 
     if (!error) {
       setLink(`${window.location.origin}/casting-call/${data[0].id}`);
+      setEventId(data[0].id);
     } else {
       alert(error.message);
     }
@@ -31,6 +34,9 @@ export default function CreateEvent() {
   return (
     <div className="page">
       <header className="page-header">
+        <Link to="/" className="back-link" style={{ marginBottom: "1rem", display: "inline-block" }}>
+          ← Back to home
+        </Link>
         <h1>Create Casting Call</h1>
         <p>Set up a new event and get a shareable link for applicants.</p>
       </header>
@@ -85,12 +91,23 @@ export default function CreateEvent() {
         </button>
 
         {link && (
-          <div className="link-box">
-            <p>Share this link with applicants:</p>
-            <a href={link} target="_blank" rel="noopener noreferrer">
-              {link}
-            </a>
-          </div>
+          <>
+            <div className="link-box">
+              <p>Share this link with applicants:</p>
+              <a href={link} target="_blank" rel="noopener noreferrer">
+                {link}
+              </a>
+            </div>
+            {eventId && (
+        <Link
+          to={`/event/${eventId}`}
+          className="btn btn-secondary"
+          style={{ marginTop: "1rem", display: "inline-flex", width: "auto", padding: "0.75rem 1.5rem", textDecoration: "none" }}
+        >
+          View event details
+        </Link>
+            )}
+          </>
         )}
       </div>
     </div>
