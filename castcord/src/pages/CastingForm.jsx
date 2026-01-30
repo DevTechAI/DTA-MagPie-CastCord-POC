@@ -7,6 +7,7 @@ export default function CastingForm() {
   const { eventId } = useParams();
   const [form, setForm] = useState({});
   const [showModal, setShowModal] = useState(false);
+  const [submittedData, setSubmittedData] = useState(null);
 
   const submitForm = async () => {
     await supabase.from("casting_applications").insert([
@@ -15,10 +16,15 @@ export default function CastingForm() {
         ...form,
       },
     ]);
+    setSubmittedData(form);
+    setForm({});
     setShowModal(true);
   };
 
-  const closeModal = () => setShowModal(false);
+  const closeModal = () => {
+    setShowModal(false);
+    setSubmittedData(null);
+  };
 
   return (
     <div className="page">
@@ -38,6 +44,7 @@ export default function CastingForm() {
               placeholder="Your full name"
               value={form.name ?? ""}
               onChange={(e) => setForm({ ...form, name: e.target.value })}
+              spellCheck={false}
             />
           </div>
           <div className="form-group">
@@ -61,6 +68,7 @@ export default function CastingForm() {
               placeholder="+1 234 567 8900"
               value={form.phone ?? ""}
               onChange={(e) => setForm({ ...form, phone: e.target.value })}
+              spellCheck={false}
             />
           </div>
           <div className="form-group">
@@ -71,6 +79,7 @@ export default function CastingForm() {
               placeholder="you@example.com"
               value={form.email ?? ""}
               onChange={(e) => setForm({ ...form, email: e.target.value })}
+              spellCheck={false}
             />
           </div>
         </div>
@@ -82,6 +91,7 @@ export default function CastingForm() {
             placeholder="City, Country"
             value={form.location ?? ""}
             onChange={(e) => setForm({ ...form, location: e.target.value })}
+            spellCheck={false}
           />
         </div>
 
@@ -97,6 +107,7 @@ export default function CastingForm() {
               placeholder="e.g. Male, Female, Non-binary"
               value={form.gender ?? ""}
               onChange={(e) => setForm({ ...form, gender: e.target.value })}
+              spellCheck={false}
             />
           </div>
           <div className="form-group">
@@ -106,6 +117,7 @@ export default function CastingForm() {
               placeholder="State / Region"
               value={form.native_state ?? ""}
               onChange={(e) => setForm({ ...form, native_state: e.target.value })}
+              spellCheck={false}
             />
           </div>
         </div>
@@ -117,6 +129,7 @@ export default function CastingForm() {
             placeholder="e.g. English, Hindi, Tamil"
             value={form.languages ?? ""}
             onChange={(e) => setForm({ ...form, languages: e.target.value })}
+            spellCheck={false}
           />
         </div>
 
@@ -125,7 +138,7 @@ export default function CastingForm() {
         </button>
       </div>
 
-      {showModal && <Modal data={form} onClose={closeModal} />}
+      {showModal && <Modal data={submittedData} onClose={closeModal} />}
     </div>
   );
 }
