@@ -149,8 +149,17 @@ export default function EventDetails() {
             {applications.map((app) => (
               <li key={app.id} className="application-item">
                 <div className="application-header">
-                  <strong>{app.name || "Unnamed"}</strong>
-                  {app.email && <span className="application-email">{app.email}</span>}
+                  {app.candidate_photo_url && (
+                    <img
+                      src={app.candidate_photo_url}
+                      alt={`${app.name || "Applicant"}`}
+                      className="application-photo"
+                    />
+                  )}
+                  <div className="application-header-text">
+                    <strong>{app.name || "Unnamed"}</strong>
+                    {app.email && <span className="application-email">{app.email}</span>}
+                  </div>
                 </div>
                 <div className="application-details">
                   {app.age && <span>Age: {app.age}</span>}
@@ -158,6 +167,16 @@ export default function EventDetails() {
                   {app.location && <span>Location: {app.location}</span>}
                   {app.gender && <span>Gender: {app.gender}</span>}
                   {app.languages && <span>Languages: {app.languages}</span>}
+                  {app.youtube_link && (
+                    <span>
+                      <a href={app.youtube_link} target="_blank" rel="noopener noreferrer">YouTube</a>
+                    </span>
+                  )}
+                  {app.portfolio_link && (
+                    <span>
+                      <a href={app.portfolio_link} target="_blank" rel="noopener noreferrer">Portfolio</a>
+                    </span>
+                  )}
                 </div>
               </li>
             ))}
