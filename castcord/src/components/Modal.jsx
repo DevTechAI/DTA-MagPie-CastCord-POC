@@ -1,6 +1,6 @@
 export default function Modal({ data, onClose }) {
   const name = data?.name?.trim() || "";
-  const thankYouHeading = name ? `Thank you, ${name}!` : "Thank you!";
+  const thankYouHeading = name ? `Thank You, ${name}!` : "Thank You!";
 
   return (
     <div className="modal-overlay" onClick={onClose}>

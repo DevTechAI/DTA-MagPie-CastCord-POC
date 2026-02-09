@@ -25,7 +25,7 @@ export default function EventsList() {
   return (
     <div className="page">
       <header className="page-header">
-        <h1>Your events</h1>
+        <h1>Your Events</h1>
         <p>Click an event to view details and applications.</p>
       </header>
 
@@ -45,7 +45,7 @@ export default function EventsList() {
             {events.map((event) => (
               <li key={event.id}>
                 <Link to={`/event/${event.id}`} className="event-list-item">
-                  <span className="event-list-title">{event.title || "Untitled event"}</span>
+                  <span className="event-list-title">{event.title || "Untitled Event"}</span>
                   <span className="event-list-dates">
                     {formatDate(event.start_date)} – {formatDate(event.end_date)}
                   </span>
