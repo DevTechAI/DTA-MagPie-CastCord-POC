@@ -45,11 +45,11 @@ export default function CreateEvent() {
         <h2 className="card-title">Event Details</h2>
 
         <div className="form-group">
-          <label htmlFor="title">Casting call title</label>
+          <label htmlFor="title">Title</label>
           <input
             id="title"
             type="text"
-            placeholder="e.g. Feature Film – Lead Role"
+            placeholder="Feature Film – Lead Role"
             value={title}
             onChange={(e) => setTitle(e.target.value)}
           />
