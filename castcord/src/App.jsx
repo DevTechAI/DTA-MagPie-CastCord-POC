@@ -5,6 +5,7 @@ import CreateEvent from "./pages/CreateEvent";
 import CastingForm from "./pages/CastingForm";
 import EventDetails from "./pages/EventDetails";
 import EventsList from "./pages/EventsList";
+import ApplicantDetails from "./pages/ApplicantDetails";
 
 export default function App() {
   return (
@@ -14,6 +15,7 @@ export default function App() {
         <Route path="/create" element={<CreateEvent />} />
         <Route path="/events" element={<EventsList />} />
         <Route path="/event/:eventId" element={<EventDetails />} />
+        <Route path="/event/:eventId/application/:applicationId" element={<ApplicantDetails />} />
         <Route path="/casting-call/:eventId" element={<CastingForm />} />
       </Routes>
     </BrowserRouter>

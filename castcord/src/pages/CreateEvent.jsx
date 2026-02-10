@@ -42,7 +42,7 @@ export default function CreateEvent() {
       </header>
 
       <div className="card">
-        <h2 className="card-title">Event details</h2>
+        <h2 className="card-title">Event Details</h2>
 
         <div className="form-group">
           <label htmlFor="title">Casting call title</label>

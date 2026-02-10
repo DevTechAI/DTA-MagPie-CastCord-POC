@@ -77,7 +77,7 @@ export default function EventDetails() {
     return (
       <div className="page">
         <header className="page-header">
-          <h1>Event not found</h1>
+          <h1>Event Not Found</h1>
           <p>{error || "This event may have been removed."}</p>
         </header>
         <Link to="/" className="btn btn-secondary" style={{ display: "inline-flex", width: "auto", padding: "0.75rem 1.5rem" }}>
@@ -96,7 +96,7 @@ export default function EventDetails() {
         <Link to="/events" className="back-link" style={{ marginBottom: "1rem", display: "inline-block" }}>
           ← Back to events
         </Link>
-        <h1>{event.title || "Untitled event"}</h1>
+        <h1>{event.title || "Untitled Event"}</h1>
         <p>Event details and applicant link</p>
       </header>
 
@@ -114,7 +114,7 @@ export default function EventDetails() {
       </div>
 
       <div className="card">
-        <h2 className="card-title">Share with applicants</h2>
+        <h2 className="card-title">Share With Applicants</h2>
         <div className="link-box">
           <p>Applicants use this link to submit their application:</p>
           <a href={applicantLink} target="_blank" rel="noopener noreferrer">
@@ -148,6 +148,7 @@ export default function EventDetails() {
           <ul className="applications-list">
             {applications.map((app) => (
               <li key={app.id} className="application-item">
+                <Link to={`/event/${eventId}/application/${app.id}`} className="application-item-link">
                 <div className="application-header">
                   {app.candidate_photo_url && (
                     <img
@@ -167,17 +168,26 @@ export default function EventDetails() {
                   {app.location && <span>Location: {app.location}</span>}
                   {app.gender && <span>Gender: {app.gender}</span>}
                   {app.languages && <span>Languages: {app.languages}</span>}
-                  {app.youtube_link && (
-                    <span>
-                      <a href={app.youtube_link} target="_blank" rel="noopener noreferrer">YouTube</a>
-                    </span>
-                  )}
-                  {app.portfolio_link && (
-                    <span>
-                      <a href={app.portfolio_link} target="_blank" rel="noopener noreferrer">Portfolio</a>
-                    </span>
-                  )}
                 </div>
+                {(app.youtube_link || app.portfolio_link) && (
+                  <div className="application-links-row">
+                    {app.youtube_link ? (
+                      <a href={app.youtube_link} target="_blank" rel="noopener noreferrer" className="application-link-btn" onClick={(e) => e.stopPropagation()}>
+                        YouTube
+                      </a>
+                    ) : (
+                      <span className="application-link-btn application-link-btn-placeholder" />
+                    )}
+                    {app.portfolio_link ? (
+                      <a href={app.portfolio_link} target="_blank" rel="noopener noreferrer" className="application-link-btn" onClick={(e) => e.stopPropagation()}>
+                        Portfolio
+                      </a>
+                    ) : (
+                      <span className="application-link-btn application-link-btn-placeholder" />
+                    )}
+                  </div>
+                )}
+                </Link>
               </li>
             ))}
           </ul>

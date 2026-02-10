@@ -369,8 +369,23 @@ textarea {
 }
 
 .application-item {
-  padding: 1rem 0;
+  padding: 0;
   border-bottom: 1px solid var(--color-border);
+}
+
+.application-item-link {
+  display: block;
+  padding: 1rem 0;
+  text-decoration: none;
+  color: inherit;
+  cursor: pointer;
+  transition: background 0.15s ease;
+}
+
+.application-item-link:hover {
+  background: var(--color-bg-elevated);
+  margin: 0 -1rem;
+  padding: 1rem;
 }
 
 .application-item:last-child {
@@ -430,6 +445,42 @@ textarea {
   color: var(--color-text-muted);
 }
 
+.application-links-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.75rem;
+  width: 100%;
+  margin-top: 0.75rem;
+}
+
+.application-link-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.5rem 1rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--color-accent);
+  background: var(--color-accent-muted);
+  border: 1px solid rgba(14, 165, 233, 0.3);
+  border-radius: var(--radius-sm);
+  text-decoration: none;
+  transition: background 0.15s ease, border-color 0.15s ease;
+}
+
+.application-link-btn:hover {
+  background: rgba(14, 165, 233, 0.2);
+  border-color: var(--color-accent);
+  color: var(--color-accent);
+}
+
+.application-link-btn-placeholder {
+  background: transparent;
+  border: 1px dashed var(--color-border);
+  pointer-events: none;
+  visibility: hidden;
+}
+
 .applications-error {
   padding: 0.5rem 0;
 }
@@ -439,6 +490,54 @@ textarea {
   background: var(--color-bg);
   padding: 0.15rem 0.4rem;
   border-radius: var(--radius-sm);
+}
+
+/* Applicant details page */
+.applicant-details-card {
+  max-width: 560px;
+}
+
+.applicant-detail-photo {
+  margin-bottom: 1.5rem;
+}
+
+.applicant-detail-photo img {
+  width: 120px;
+  height: 120px;
+  object-fit: cover;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--color-border);
+}
+
+.applicant-details-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.applicant-detail-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.applicant-detail-label {
+  font-weight: 600;
+  color: var(--color-text);
+  min-width: 140px;
+}
+
+.applicant-detail-value {
+  color: var(--color-text-muted);
+}
+
+.applicant-detail-value a {
+  color: var(--color-accent);
+  text-decoration: none;
+}
+
+.applicant-detail-value a:hover {
+  text-decoration: underline;
 }
 
 /* Home page – two options */

@@ -1,4 +1,4 @@
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 import { useState } from "react";
 import { supabase } from "../api/supabaseClient";
 import Modal from "../components/Modal";
@@ -77,7 +77,10 @@ export default function CastingForm() {
   return (
     <div className="page">
       <header className="page-header">
-        <h1>Apply to this casting call</h1>
+        <Link to={`/event/${eventId}`} className="back-link" style={{ marginBottom: "1rem", display: "inline-block" }}>
+          ← Back to event
+        </Link>
+        <h1>Apply To This Casting Call</h1>
         <p>Fill in your details below. All fields are optional but recommended.</p>
         <p className="spotlight-text">
           Access your Spotlight account to find your next role. Sign in to the leading casting platform for actors, performers, and casting directors.
@@ -85,7 +88,7 @@ export default function CastingForm() {
       </header>
 
       <div className="card">
-        <h2 className="card-title">Personal information</h2>
+        <h2 className="card-title">Personal Information</h2>
 
         <div className="form-row">
           <div className="form-group">
@@ -116,7 +119,7 @@ export default function CastingForm() {
             <input
               id="phone"
               type="tel"
-              placeholder="+1 234 567 8900"
+              placeholder="1234567890"
               value={form.phone ?? ""}
               onChange={(e) => setForm({ ...form, phone: e.target.value })}
               spellCheck={false}
